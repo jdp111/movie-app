@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  
+<link href="movieApp.css" rel="stylesheet">
+</head>
+
+<body>
+<div>
+    <text>Movie Title:  </text>
+    <input type = 'text' id = "movieIn"> 
+</div>
+<div>
+    <text>Rating:  </text>
+    <input type = 'text' id = "ratingIn"> 
+</div>
+<div>
+    <input type = 'button' id = "addToList" value = "Add Movie"> 
+</div>
+
+<table id = "list"></table>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+var cont = 0;
+$('#addToList').on('click', function(){
+    const title = $('#movieIn').get(0).value;
+    const rate = $('#ratingIn').get(0).value;
+    $("<tr></tr>").attr('id',cont).appendTo("#list")
+    $("<td></td>").text(`Movie: ${title}`).appendTo(`#${cont}`);
+    $("<td></td>").text(`Rating: ${rate}`).appendTo(`#${cont}`);
+    $("<input></input>").attr('type','button').attr('id','remove').attr('value','X').appendTo(`#${cont}`);
+    cont +=1;
+} );
+
+$('#list').on('click','#remove',function(evt){
+    evt.target.parentElement.remove();
+})
+
+</script>
+</body>
+
+</html>
